@@ -7,31 +7,31 @@
 //
 
 #import "ExampleUIWebViewController.h"
-#import "WebViewJavascriptBridge.h"
+//#import "WebViewJavascriptBridge.h"
 
 @interface ExampleUIWebViewController ()
-@property WebViewJavascriptBridge* bridge;
+//@property WebViewJavascriptBridge* bridge;
 @end
 
 @implementation ExampleUIWebViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (_bridge) { return; }
+//    if (_bridge) { return; }
     
     UIWebView* webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:webView];
     
-    [WebViewJavascriptBridge enableLogging];
-    
-    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
-    [_bridge setWebViewDelegate:self];
-    
-    [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"testObjcCallback called: %@", data);
-        responseCallback(@"Response from testObjcCallback");
-    }];
-    
-    [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
+//    [WebViewJavascriptBridge enableLogging];
+//
+//    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
+//    [_bridge setWebViewDelegate:self];
+//
+//    [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
+//        NSLog(@"testObjcCallback called: %@", data);
+//        responseCallback(@"Response from testObjcCallback");
+//    }];
+//
+//    [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
     
     [self renderButtons:webView];
     [self loadExamplePage:webView];
@@ -71,14 +71,14 @@
 }
 
 - (void)disableSafetyTimeout {
-    [self.bridge disableJavscriptAlertBoxSafetyTimeout];
+//    [self.bridge disableJavscriptAlertBoxSafetyTimeout];
 }
 
 - (void)callHandler:(id)sender {
-    id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
-    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
-        NSLog(@"testJavascriptHandler responded: %@", response);
-    }];
+//    id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
+//    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
+//        NSLog(@"testJavascriptHandler responded: %@", response);
+//    }];
 }
 
 - (void)loadExamplePage:(UIWebView*)webView {
